@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Linking CSS and JavaScript-->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link type="text/javascript" src="game.js">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+    <!--global variables
+        setup like function start(){
+            target name = 18 + math.round(math.random)
+        }
+        $("images").on("click",function){
+            yourTotal = playersNumber + imgValue;
+            $("#playersNumber").innerhtml(yourTotal);
+            check (); 
+        }
+        function check (){
+            if (playerNumber === startingNumber){
+              wins =wins ++;
+              alert("You Win")
+        } Else (playersNumber > startingNumber){
+           losses++;
+           alert("you Lost");
+        }
+
+    -->
+    <!--Start of the page-->
+    <title>Money Hungry</title>
+</head>
+
+<body>
+    <h1>Money Hungry</h1>
+    <div id="instructions">
+    <ul>
+        <li>Given random value</li>
+        <li>The images below each have a value of a different amount</li>
+        <li> Click on the images to make your value equal the random value exactly</li>
+        <li> If you get the exact amount you win if you go over you lose</li>
+        <li>Each game the value will change </li>
+    </ul>
+    </div>
+    <div id="startingNumber">Starting Number:</div>
+    <div id="wins">Wins:</div>
+    <div id="losses">Losses:</div>
+    
+    <span id="images">
+        <img src="assets/images/safe.jpg" alt ="cartoon money safe" style="width:175px;height:175px;" id="safe">
+        <img src="assets/images/slotmachine.jpg" alt ="cartoon money safe" style="width:175px;height:175px;" id="slotmachines">
+        <img src="assets/images/gold.jpg" alt ="cartoon gold" style="width:175px;height:175px;" id="gold">
+        <img src="assets/images/cash.jpg" alt ="cartoon cash" style="width:175px;height:175px;" id ="cash" >
+    </span>
+
+    <span id="totalScore">Your Score: </span>
+    
+    <div id="guessValue"></div>
+
+</body>
+
+</html>
