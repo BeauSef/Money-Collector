@@ -9,58 +9,162 @@
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link type="text/javascript" src="game.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 
-    <!--global variables
-        setup like function start(){
-            target name = 18 + math.round(math.random)
-        }
-        $("images").on("click",function){
-            yourTotal = playersNumber + imgValue;
-            $("#playersNumber").innerhtml(yourTotal);
-            check (); 
-        }
-        function check (){
-            if (playerNumber === startingNumber){
-              wins =wins ++;
-              alert("You Win")
-        } Else (playersNumber > startingNumber){
-           losses++;
-           alert("you Lost");
-        }
-
-    -->
     <!--Start of the page-->
     <title>Money Hungry</title>
 </head>
 
 <body>
     <h1>Money Hungry</h1>
-    <div id="instructions">
-    <ul>
-        <li>Given random value</li>
-        <li>The images below each have a value of a different amount</li>
-        <li> Click on the images to make your value equal the random value exactly</li>
-        <li> If you get the exact amount you win if you go over you lose</li>
-        <li>Each game the value will change </li>
-    </ul>
+    <div class="jumbotron jumbotron-fluid">
+        <div id="instructions">
+            <ul>
+                <li>Given random number</li>
+                <li>The images below each have a value of a different amount</li>
+                <li> Click on the images to make your value equal the random value exactly</li>
+                <li> If you get the exact amount you win if you go over you lose</li>
+                <li>Each game the value will change </li>
+            </ul>
+        </div>
     </div>
-    <div id="startingNumber">Starting Number:</div>
-    <div id="wins">Wins:</div>
-    <div id="losses">Losses:</div>
-    
-    <span id="images">
-        <img src="assets/images/safe.jpg" alt ="cartoon money safe" style="width:175px;height:175px;" id="safe">
-        <img src="assets/images/slotmachine.jpg" alt ="cartoon money safe" style="width:175px;height:175px;" id="slotmachines">
-        <img src="assets/images/gold.jpg" alt ="cartoon gold" style="width:175px;height:175px;" id="gold">
-        <img src="assets/images/cash.jpg" alt ="cartoon cash" style="width:175px;height:175px;" id ="cash" >
-    </span>
+    <div id="score">
+        <div class="row">
+            <div id="startingNumber" class="col-md-6">Starting Number:</div>
+            <div id="yourScore" class="col-md-6">Your Score: </div>
+        </div>
+        <div id="record">
+            <div class="row">
+                <div id="winner" class="col-md-6">Wins:</div>
+                <div id="loser" class="col-md-6">Losses:</div>
+            </div>
+        </div>
+    </div><br>
 
-    <span id="totalScore">Your Score: </span>
-    
-    <div id="guessValue"></div>
+    <br><br>
+    <div id="images">
+        <div class="row">
+            <img src="assets/images/safe.jpg" alt="cartoon money safe" style="width:360px;height:220px;" class="safe"
+                id="pic1">
+            <img src="assets/images/slotmachine.jpg" alt="cartoon slotmachine" style="width:360px;height:220px;" class="slotmachines"
+                id="pic2">
+            <img src="assets/images/gold.jpg" alt="cartoon gold" style="width:360px;height:220px;" class="gold" id="pic3">
+            <img src="assets/images/cash.jpg" alt="cartoon cash" style="width:360px;height:220px;" class="cash" id="pic4">
+        </div>
+    </div>
 
+
+
+
+    <script>
+        $(document).ready(function () {
+            // this is going to generate your starting number between 19-101
+            var randomNumber = Math.floor(Math.random() * 101) + 19;
+            console.log(randomNumber);
+            $("#startingNumber").text(randomNumber);
+
+            // img with generate a random number 1-12
+            var img1 = Math.floor(Math.random() * 12) + 1;
+            var img2 = Math.floor(Math.random() * 12) + 1;
+            var img3 = Math.floor(Math.random() * 12) + 1;
+            var img4 = Math.floor(Math.random() * 12) + 1;
+
+
+            var wins = 0;
+            var losses = 0;
+            var yourScore = 0;
+
+            $("#wins").text(winner);
+
+            $("#losses").text(loser);
+
+            //this will be your restart function for everything to restart back to normal
+            function restart() {
+                randomNumber = Math.floor(Math.random() * 101) + 19;
+                console.log(randomNumber);
+                $("#startingNumber").text(randomNumber);
+                img1 = Math.floor(Math.random() * 12) + 1;
+                img2 = Math.floor(Math.random() * 12) + 1;
+                img3 = Math.floor(Math.random() * 12) + 1;
+                img4 = Math.floor(Math.random() * 12) + 1;
+                yourScore = 0;
+
+            }
+            // this will alert everytime you win and restart with a new guess
+            function gameWon() {
+                $("#wins").text(winner);
+                wins++;
+                alert("Good Job! You Win");
+                restart();
+            }
+            //this will alert if you go over and will restart with a new number
+            function tryAgain() {
+                $("#losses").text(loser);
+                losses++;
+                alert("Close but try agin! You Lost");
+                restart()
+            }
+            // when pic1 is clicked your guess will keep going up until you reach or pass the starting number
+            $("#pic1").on("click", function () {
+                yourScore = yourScore + img1;
+                console.log(pic1);
+                $("#yourScore").text(img1);
+
+                if (yourScore == randomNumber) {
+                    gameWon();
+                    if (yourScore > randomNumber) {
+                        tryAgain();
+                    }
+                }
+            })
+            $("#pic2").on("click", function () {
+                yourScore = yourScore + img2;
+                console.log(pic2);
+                $("#yourScore").text(img2);
+
+                if (yourScore == randomNumber) {
+                    gameWon();
+                   if (yourScore > randomNumber) {
+                        tryAgain();
+                    }
+                }
+            })
+            $("#pic3").on("click", function () {
+                yourScore = yourScore + img3;
+                console.log(pic3);
+                $("#yourScore").text(img3);
+
+                if (yourScore == randomNumber) {
+                    gameWon();
+                   if (yourScore > randomNumber) {
+                        tryAgain();
+                    }
+                }
+            })
+            $("#pic4").on("click", function () {
+                yourScore = yourScore + img4;
+                console.log(pic4);
+                $("#yourScore").text(img4);
+
+                if (yourScore == randomNumber) {
+                    gameWon();
+                   if (yourScore > randomNumber) {
+                        tryAgain();
+                    }
+                }
+            })
+
+      
+      
+      
+      
+      
+        })
+
+    </script>
 </body>
 
 </html>

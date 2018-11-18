@@ -1,0 +1,17 @@
+h1 {
+    background: green;
+    text-align: center;
+    font-size: 25px;
+}
+#instructions{
+    font-size: 15px;
+}
+#score {
+    background-color:lightslategray;
+}
+.row {
+    font-size: 30px;
+}
+#record {
+background-color: green;
+}

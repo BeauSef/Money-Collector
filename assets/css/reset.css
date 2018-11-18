@@ -1,0 +1,26 @@
+function restart() {
+    randomNumber = Math.floor(Math.random() * 101) + 19;
+    console.log(randomNumber);
+    $("#startingNumber").text(randomNumber);
+    img1 = Math.floor(Math.random() * 12) + 1;
+    img2 = Math.floor(Math.random() * 12) + 1;
+    img3 = Math.floor(Math.random() * 12) + 1;
+    img4 = Math.floor(Math.random() * 12) + 1;
+    yourScore = 0;
+
+}
+
+function gameWon() {
+    $("#wins").text(winner);
+    wins++;
+    alert("Good Job! You Win");
+    restart();
+}
+function tryAgain() {
+    $("#losses").text(loser);
+    losses++;
+    alert("Close but try agin! You Lost");
+    restart();
+}
+
+
