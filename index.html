@@ -61,10 +61,12 @@
 
     <script>
         $(document).ready(function () {
+            gameWon();
+            restart();
             // this is going to generate your starting number between 19-101
             var randomNumber = Math.floor(Math.random() * 101) + 19;
             console.log(randomNumber);
-            $("#startingNumber").text(randomNumber);
+            $("#startingNumber").text(" Random Number: " + randomNumber);
 
             // img with generate a random number 1-12
             var img1 = Math.floor(Math.random() * 12) + 1;
@@ -77,15 +79,15 @@
             var losses = 0;
             var yourScore = 0;
 
-            $("#wins").text(winner);
+            $("#wins").text(" Wins: " + wins);
 
-            $("#losses").text(loser);
+            $("#losses").text(" Loser: " + losses);
 
             //this will be your restart function for everything to restart back to normal
             function restart() {
                 randomNumber = Math.floor(Math.random() * 101) + 19;
                 console.log(randomNumber);
-                $("#startingNumber").text(randomNumber);
+                $("#startingNumber").text(" Random Number: " +  randomNumber);
                 img1 = Math.floor(Math.random() * 12) + 1;
                 img2 = Math.floor(Math.random() * 12) + 1;
                 img3 = Math.floor(Math.random() * 12) + 1;
@@ -109,11 +111,11 @@
             }
             // when pic1 is clicked your guess will keep going up until you reach or pass the starting number
             $("#pic1").on("click", function () {
-                yourScore = yourScore + img1;
-                console.log(pic1);
-                $("#yourScore").text(img1);
+                yourScore= yourScore + img1;
+                console.log(yourScore);
+                $("#yourScore").text(" Your Score: " + yourScore);
 
-                if (yourScore == randomNumber) {
+                if (yourScore === randomNumber) {
                     gameWon();
                     if (yourScore > randomNumber) {
                         tryAgain();
@@ -122,47 +124,42 @@
             })
             $("#pic2").on("click", function () {
                 yourScore = yourScore + img2;
-                console.log(pic2);
-                $("#yourScore").text(img2);
+                console.log(yourScore);
+                $("#yourScore").text( " Your Score: " + yourScore);
 
                 if (yourScore == randomNumber) {
                     gameWon();
-                   if (yourScore > randomNumber) {
+                    if (yourScore > randomNumber) {
                         tryAgain();
                     }
                 }
             })
             $("#pic3").on("click", function () {
                 yourScore = yourScore + img3;
-                console.log(pic3);
-                $("#yourScore").text(img3);
+                console.log(yourScore);
+                $("#yourScore").text( " Your Score: " + yourScore);
 
-                if (yourScore == randomNumber) {
+                if (yourScore === randomNumber) {
                     gameWon();
-                   if (yourScore > randomNumber) {
+                    if (yourScore > randomNumber) {
                         tryAgain();
                     }
                 }
             })
             $("#pic4").on("click", function () {
                 yourScore = yourScore + img4;
-                console.log(pic4);
-                $("#yourScore").text(img4);
+                console.log(yourScore);
+                $("#yourScore").text(" Your Score: " + yourScore);
 
-                if (yourScore == randomNumber) {
+                if (yourScore === randomNumber) {
                     gameWon();
-                   if (yourScore > randomNumber) {
+                    if (yourScore > randomNumber) {
                         tryAgain();
                     }
                 }
             })
-
-      
-      
-      
-      
-      
         })
+        console.log(yourScore)
 
     </script>
 </body>
